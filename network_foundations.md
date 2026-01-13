@@ -64,7 +64,7 @@ A router is the gateway that connects your local network to the **Internet**.
    - Direct packets according to routing decisions
    - Forward packets to the appropriate next hop
 
-![Router Architecture](assets/routers.jpg)
+<img src="assets/routers.jpg" alt="Router Architecture" style="zoom:50%;" />
 
 ---
 
@@ -105,7 +105,7 @@ Total nodal delay: $d_{nodal} = d_{proc} + d_{queue} + d_{trans} + d_{prop}$
 
 ## Internet Structure
 
-![Internet Architecture](assets/internet_structure.jpg)
+<img src="assets/internet_structure.jpg" alt="Internet Architecture" style="zoom:50%;" />
 
 The Internet is organized hierarchically as a "network of networks":
 
@@ -137,14 +137,21 @@ The Internet uses a layered protocol stack where each layer has specific respons
 ### Protocol Overview
 
 **Application Layer**
+
 - **HTTP**: Get web pages, images, and post data to servers
 - Handles URLs, redirects, caching, proxies, cookies
 
+**Security layer**
+
+- Encryption and Authentication
+
 **Transport Layer**
+
 - **TCP**: Byte streams with ordering, delivery confirmation, pacing
 - **UDP**: Simple datagram delivery
 
 **Network Layer**
+
 - **IP**: Forward packets across multiple hops
 - Makes best-effort attempt to route packets to destination IP address
 
@@ -152,16 +159,16 @@ The Internet uses a layered protocol stack where each layer has specific respons
 
 - **Ethernet/WiFi**: Share communication link with multiple local devices
 
-![layers](assets/layers.jpg)
+<img src="assets/layers.jpg" alt="layers" style="zoom:50%;" />
 
 ### Transport Layer Protocols
 
-| **Feature** | **TCP (Transmission Control Protocol)** | **UDP (User Datagram Protocol)** |
-|------------|----------------------------------------|----------------------------------|
-| **Abstraction** | Reliable, bidirectional byte stream ("pipe") | Simple datagram service; like plain IP with ports |
-| **Reliability** | Provides delivery confirmation and retransmission | No reliability; applications must handle errors |
-| **Flow Control** | Throttles sender to avoid overwhelming receiver | None |
-| **Congestion Control** | Adjusts sending rate based on network conditions | None |
-| **Connection Setup** | Requires 3-way handshake to establish connection | No setup delay; connectionless |
-| **Use Cases** | Web browsing (HTTP), email (SMTP), file transfer (FTP) | VoIP (SIP/RTP), DNS, streaming, gaming |
-| **Overhead** | Higher due to reliability mechanisms | Minimal overhead |
+| **Feature**            | **TCP (Transmission Control Protocol)**                | **UDP (User Datagram Protocol)**                  |
+| ---------------------- | ------------------------------------------------------ | ------------------------------------------------- |
+| **Abstraction**        | Reliable, bidirectional byte stream ("pipe")           | Simple datagram service; like plain IP with ports |
+| **Reliability**        | Provides delivery confirmation and retransmission      | No reliability; applications must handle errors   |
+| **Flow Control**       | Throttles sender to avoid overwhelming receiver        | None                                              |
+| **Congestion Control** | Adjusts sending rate based on network conditions       | None                                              |
+| **Connection Setup**   | Requires 3-way handshake to establish connection       | No setup delay; connectionless                    |
+| **Use Cases**          | Web browsing (HTTP), email (SMTP), file transfer (FTP) | VoIP (SIP/RTP), DNS, streaming, gaming            |
+| **Overhead**           | Higher due to reliability mechanisms                   | Minimal overhead                                  |
