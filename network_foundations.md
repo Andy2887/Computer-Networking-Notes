@@ -12,12 +12,6 @@ The Internet is a **"network of networks"** consisting of billions of computing 
 
 ## Internet Architecture
 
-### Network Edge
-
-The **network edge** includes all hosts (clients and servers) that connect to the Internet:
-### Network Core
-
-The **network core** is a mesh of interconnected routers that relay packets between different parts of the Internet:
 ### Access Networks
 
 Access networks connect end users to the Internet:
@@ -161,14 +155,10 @@ The Internet uses a layered protocol stack where each layer has specific respons
 
 <img src="assets/layers.jpg" alt="layers" style="zoom:50%;" />
 
-### Transport Layer Protocols
+*Here is an analogy explaining different layers of the network:*
 
-| **Feature**            | **TCP (Transmission Control Protocol)**                | **UDP (User Datagram Protocol)**                  |
-| ---------------------- | ------------------------------------------------------ | ------------------------------------------------- |
-| **Abstraction**        | Reliable, bidirectional byte stream ("pipe")           | Simple datagram service; like plain IP with ports |
-| **Reliability**        | Provides delivery confirmation and retransmission      | No reliability; applications must handle errors   |
-| **Flow Control**       | Throttles sender to avoid overwhelming receiver        | None                                              |
-| **Congestion Control** | Adjusts sending rate based on network conditions       | None                                              |
-| **Connection Setup**   | Requires 3-way handshake to establish connection       | No setup delay; connectionless                    |
-| **Use Cases**          | Web browsing (HTTP), email (SMTP), file transfer (FTP) | VoIP (SIP/RTP), DNS, streaming, gaming            |
-| **Overhead**           | Higher due to reliability mechanisms                   | Minimal overhead                                  |
+1. **Application Layer:** You're writing a letter to your friend. You decide what to write on your letter.
+2. **Security Layer:** You put your letter in a secured envelop.
+3. **The Transport Layer:** Your letter gets sent from post sffice A to post office B in a reliable way.
+4. **The Network Layer:** The post office figured out the best way to deliver the mail.
+5. **The Link Layer:** The mailman delivers the mail to your friend.

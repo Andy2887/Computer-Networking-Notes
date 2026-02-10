@@ -31,7 +31,7 @@ The **User Datagram Protocol (UDP)** is the simplest transport protocol. It is e
 
 To make a connection "reliable" (like TCP), we have to solve the problems of the underlying Internet: **packet loss, corruption, and reordering.**
 
-![](/Users/yuanliheng/Desktop/CS340/notes/assets/tcp_packet_structure.jpg)
+![](assets/tcp_packet_structure.jpg)
 
 ### 1. Sequence Numbers
 

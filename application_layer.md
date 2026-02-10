@@ -129,6 +129,14 @@ DNS maps from human-friendly hostnames to IP addresses.
 
 **DNS Record Time to Live:** the time record is on DNS resolver.
 
+**Why not always set TTL very low (e.g., 30 seconds)?**
+
+- **Higher latency for users.** Cache misses mean more round trips to your nameserver, adding a small but real delay to every lookup.
+
+**Why not always set TTL very high (e.g., 24–48 hours)?**
+
+- **Slow propagation of changes.** If you need to update an IP address, point to a new server, or respond to an outage, you're stuck waiting for caches across the internet to expire. Users could be routed to the wrong place for the full TTL duration. Failovers, migrations, and disaster recovery all become much harder when you can't quickly redirect traffic.
+
 ### Content Delivery Network
 
 The physical distance between you and a server matters. If you're in Evanston and trying to reach a server in Beijing, you’ll see high latency (over 200ms).
@@ -136,4 +144,3 @@ The physical distance between you and a server matters. If you're in Evanston an
 To solve this, we use **Content Delivery Networks (CDNs)**. When you request a file, a smart DNS server looks at your IP address and directs you to the server physically closest to you.
 
 ![](assets/cdn.jpg)
-
