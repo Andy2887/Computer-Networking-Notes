@@ -16,7 +16,7 @@ Subnets are chunks of IP addresses in that can communicate directly, without tra
 
 In the graph below, a blue area is a subnet.
 
-<img src="/Users/yuanliheng/Desktop/CS340/notes/assets/subnet.jpg" style="zoom:50%;" />
+<img src="assets/subnet.jpg" style="zoom:50%;" />
 
 **Subnet Mask**: A subnet mask is used to define where the division occurs between the part of the address that identifies the network and the part that identifies the specific device (host).
 

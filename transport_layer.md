@@ -64,7 +64,7 @@ Three-way handshake sets up the connection.
 | ------- | --------------- | ---------------------- |
 | SYN     | J               |                        |
 | SYN-ACK | K               | J + 1                  |
-| ACK     |                 | K + 1                  |
+| ACK     | J + 1           | K + 1                  |
 
 <img src="assets/tcp_setup.jpg" style="zoom:50%;" />
 
@@ -73,6 +73,66 @@ Three-way handshake sets up the connection.
 Each side of the connection sends FIN to say it’s finished sending.
 
 <img src="assets/tcp_connection_close.jpg" style="zoom:50%;" />
+
+### Full TCP Example:
+
+Let's use these assumptions:
+
+- **Client ISN = 1000**, **Server ISN = 5000**
+
+------
+
+**Phase 1: Three-Way Handshake**
+
+| Step | Who             | Flag    | Seq  | Ack  | Data    |
+| ---- | --------------- | ------- | ---- | ---- | ------- |
+| 1    | Client → Server | SYN     | 1000 | —    | 0 bytes |
+| 2    | Server → Client | SYN-ACK | 5000 | 1001 | 0 bytes |
+| 3    | Client → Server | ACK     | 1001 | 5001 | 0 bytes |
+
+- Client sends SYN with its ISN (1000). The SYN consumes one sequence number.
+- Server replies with its own ISN (5000) and ACKs 1001, meaning "I got your SYN, send me byte 1001 next."
+- Client ACKs 5001, meaning "I got your SYN-ACK, send me byte 5001 next."
+- Connection is now established. Both sides are ready at their respective +1 offsets.
+
+------
+
+**Phase 2: Data Transfer**
+
+| Step | Who             | Flag | Seq  | Ack  | Data      |
+| ---- | --------------- | ---- | ---- | ---- | --------- |
+| 4    | Client → Server | ACK  | 1001 | 5001 | 500 bytes |
+| 5    | Server → Client | ACK  | 5001 | 1501 | 0 bytes   |
+| 6    | Client → Server | ACK  | 1501 | 5001 | 300 bytes |
+| 7    | Server → Client | ACK  | 5001 | 1801 | 0 bytes   |
+| 8    | Client → Server | ACK  | 1801 | 5001 | 200 bytes |
+| 9    | Server → Client | ACK  | 5001 | 2001 | 0 bytes   |
+
+**Breakdown:**
+
+- **Step 4:** Client starts at 1001 (ISN+1), sends 500 bytes. Segment occupies bytes 1001–1500.
+
+  (Note: step 4 and step 3 has the same sequence number, because step 3 does not consume any bytes)
+
+- **Step 5:** Server ACKs 1501 — "I got everything up to 1500, send 1501 next."
+
+- The rest is self-explanatory.
+
+------
+
+**Phase 3: Connection Teardown (Four-Way)**
+
+| Step | Who             | Flag | Seq  | Ack  | Data    |
+| ---- | --------------- | ---- | ---- | ---- | ------- |
+| 10   | Client → Server | FIN  | 2001 | 5001 | 0 bytes |
+| 11   | Server → Client | ACK  | 5001 | 2002 | 0 bytes |
+| 12   | Server → Client | FIN  | 5001 | 2002 | 0 bytes |
+| 13   | Client → Server | ACK  | 2002 | 5002 | 0 bytes |
+
+- **FIN**, like SYN, consumes one sequence number even though it carries no data.
+- Each side sends FIN and ACK to close connection.
+
+---
 
 ### How TCP Sends Packages
 
