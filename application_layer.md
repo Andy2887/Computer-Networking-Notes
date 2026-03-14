@@ -6,8 +6,6 @@
 
 **Purpose:** allow apps running on different computers to communicate.
 
-<img src="assets/application.jpg" style="zoom:50%;" />
-
 ---
 
 ## Architectures
@@ -21,8 +19,6 @@
 ---
 
 ## Hyper Text Transport Protocol (HTTP)
-
-HTTP was invented for browsers to fetch pages from webservers
 
 **Request:**
 
@@ -54,11 +50,11 @@ Cookies are generally used for **session management:** Keeping you logged in as 
 
 For example, if a site embeds a piece of code from `facebook.com`, Facebook can set its own cookie. Because the domain of the cookie (`facebook.com`) differs from the domain in your address bar (`news-site.com`), it is labeled **third-party**.
 
-#### **Cross-Site Request Forgery (CSRF) attack**
+**Cross-Site Request Forgery (CSRF) attack**
 
 A **Cross-Site Request Forgery (CSRF)** attack, also known as "one-click attack" or "session riding," exploits the fact that browsers automatically include credentials (like cookies) when making requests to a specific domain, regardless of which site the user is currently visiting. A web server cannot easily distinguish between a request initiated by a user's intentional action and a request initiated by a malicious script on a different site.
 
-##### 1. The Setup (GET Attack)
+**1. The Setup (GET Attack)**
 
 A simple `<img>` tag can trigger a GET request.
 
@@ -73,7 +69,7 @@ If you are currently logged into `bank.com` in another tab, your browser will:
 3. **Crucially**, attach your `bank.com` session cookies to that request.
 4. The bank's server sees the cookies, thinks *you* requested the transfer, and processes it.
 
-##### 2. The POST Variation
+**2. The POST Variation**
 
 Many sensitive actions require a **POST** request. An attacker can still bypass this using a hidden HTML form that auto-submits via JavaScript:
 
@@ -87,7 +83,7 @@ Many sensitive actions require a **POST** request. An attacker can still bypass 
 </script>
 ```
 
-##### Prevention Strategy
+**Prevention Strategy**
 
 This is a modern and highly effective defense. It tells the browser whether to send cookies with "cross-site" requests.
 
@@ -135,9 +131,11 @@ DNS maps from human-friendly hostnames to IP addresses.
 
 **Why not always set TTL very high (e.g., 24–48 hours)?**
 
-- **Slow propagation of changes.** If you need to update an IP address, point to a new server, or respond to an outage, you're stuck waiting for caches across the internet to expire. Users could be routed to the wrong place for the full TTL duration. Failovers, migrations, and disaster recovery all become much harder when you can't quickly redirect traffic.
+- **Slow propagation of changes.** If you need to update an IP address, point to a new server, or respond to an outage, you're stuck waiting for caches across the internet to expire. Users could be routed to the wrong place for the full TTL duration.
 
-### Content Delivery Network
+---
+
+## Content Delivery Network
 
 The physical distance between you and a server matters. If you're in Evanston and trying to reach a server in Beijing, you’ll see high latency (over 200ms).
 
