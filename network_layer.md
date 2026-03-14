@@ -213,13 +213,13 @@ Why we need it?
 
 Mechanism:
 
-I receive an advertisement from a neighbor (or detect a local link change).
+1. I receive an **advertisement from a neighbor** or **detect a local link change.**
 
-I recalculate my best routes.
+2. I recalculate my best routes.
 
-If any of my routes changed, I advertise my updated routes to my neighbors.
+3. **If my DV changes, I advertise my DV to my neighbors.**
 
-This ripples outward until nobody's routes change — convergence.
+4. This ripples outward until nobody's routes change — convergence.
 
 <img src="/Users/yuanliheng/Desktop/CS340/notes/assets/dv_vs_bgp.jpg" style="zoom:50%;" />
 
@@ -237,9 +237,9 @@ When a router has multiple routes to the same prefix, how does it choose? There'
 
 **First: Local preference.** This is a hard-coded policy — the network admin says "I prefer routes through AS2 over AS1" for business reasons, regardless of path length. Money talks.
 
-**Second: Shortest AS_PATH.** This is the actual DV algorithm at work — fewer AS hops is better.
+**Second: Shortest AS_PATH.** Fewer AS hops is better.
 
-**Third: Hot potato routing.** If two routes have equal AS_PATH length, pick the one whose NEXT_HOP is closest *within your own AS* (using your IGP metrics). The idea is: get the packet out of my network as fast as possible. Like a hot potato — I don't want to carry it any longer than I have to.
+**Third: Hot potato routing.** If two routes have equal AS_PATH length, **pick the one whose NEXT_HOP is closest to your own AS** (using your IGP metrics). The idea is: get the packet out of my network as fast as possible. Like a hot potato — I don't want to carry it any longer than I have to.
 
 **Fourth: Tie-breaker.** If everything else is equal, use some arbitrary rule like BGP router ID.
 
