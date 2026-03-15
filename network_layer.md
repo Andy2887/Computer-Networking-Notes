@@ -68,7 +68,19 @@ Your laptop sends a packet to a web server. The NAT router intercepts this. It p
 
 ### Cons
 
-The NAT only creates a port mapping when a local device sends a packet *out*. If someone on the Internet tries to reach your machine cold, the NAT has no mapping for them and just drops the packet. You need **port forwarding** — manually telling your router "anything that comes in on port 8080, send to 10.0.0.5."
+The NAT only creates a port mapping when a local device sends a packet *out*. If someone on the Internet tries to reach your machine cold, the NAT has no mapping for them and just drops the packet. You need **port forwarding** — manually telling your router "anything that comes in on port 8080, send to 10.0.0.1."
+
+### Peer-to-peer communication behind a NAT
+
+Problem: if user A and user B are both behind an NAT, there is no way for them because there is no mapping of public address to private address in either of the NAT.
+
+Solution: Both user A and user B must connect through a relay. 
+
+Steps:
+
+1. user A connect to a relay which has a public address, creating a mapping in its NAT.
+2. user B also connects to the relay, creating a mapping in its NAT.
+3. Whenever there are new messages, it goes from one user through the relay to another user.
 
 ---
 
