@@ -83,7 +83,7 @@ Key idea: multiple houses are connected by one big wire.
 
 ## Ethernet
 
-A link-layer protocol for wired local area networks.
+A link-layer protocol for wired local area networks. (Ethernet is not Wi-Fi!!!!!)
 
 Ethernet uses CSMA/CD.
 
@@ -113,7 +113,7 @@ Steps:
 
 <img src="assets/hop_1.jpg" style="zoom:33%;" />
 
-<img src="/Users/yuanliheng/Desktop/CS340/notes/assets/hop_2.jpg" style="zoom:33%;" />
+<img src="assets/hop_2.jpg" style="zoom:33%;" />
 
 <img src="assets/hop_3.jpg" style="zoom:33%;" />
 
