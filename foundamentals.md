@@ -155,10 +155,10 @@ The Internet uses a layered protocol stack where each layer has specific respons
 
 <img src="assets/layers.jpg" alt="layers" style="zoom:50%;" />
 
-*Here is an analogy explaining different layers of the network:*
+*Here is an analogy of mailing between friends to explain different layers of the network:*
 
-1. **Application Layer:** You're writing a letter to your friend. You decide what to write on your letter.
-2. **Security Layer:** You put your letter in a secured envelop.
-3. **The Transport Layer:** Your letter gets sent from post sffice A to post office B in a reliable way.
-4. **The Network Layer:** The post office figured out the best way to deliver the mail.
-5. **The Link Layer:** The mailman delivers the mail to your friend.
+1. **Application Layer:** What you're going to write in your letter. ("Hello!", "Acknowledged", "Goodbye!")
+2. **Security Layer:** How to encrypt your letter. 
+3. **The Transport Layer:** What rules to establish between you and your friend regarding sending letters to ensure a reliable communication. (For example, send an acknowledgement letter after receiving a letter)
+4. **The Network Layer:** For the post office, how to figure out the best way to deliver the mail to a certain address.
+5. **The Link Layer:** How to deliver the letter to the post office. 
