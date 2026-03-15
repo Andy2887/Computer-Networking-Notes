@@ -4,7 +4,7 @@
 
 ## UDP
 
-The **User Datagram Protocol (UDP)** is the simplest transport protocol. It is essentially IP with two small additions:
+The **User Datagram Protocol (UDP)** is the simplest transport protocol.
 
 1. **Port Numbers:** To tell the computer which application the packet belongs to.
 2. **Checksums:** A mathematical summary of the data used to detect corruption.
@@ -35,10 +35,8 @@ To make a connection "reliable" (like TCP), we have to solve the problems of the
 
 ### 1. Sequence Numbers
 
-Unlike some protocols that count packets, TCP counts **bytes**.
+The sequence number indicates the index (offset) of the **very first byte** of data included in that specific packet.
 
-- **Definition:** The Sequence Number in a TCP segment tells the receiver where that segment fits into the overall "stream."
-- **The Offset:** It indicates the index (offset) of the **very first byte** of data included in that specific packet.
 - **Example:** If you have already sent 1,000 bytes and you are sending a new packet with 500 more bytes, the sequence number for this new packet would be 1,001.
 
 ### 2. Cumulative ACKs
@@ -136,34 +134,27 @@ Let's use these assumptions:
 
 ### How TCP Sends Packages
 
-#### Stop-and-Wait
-
-The simplest computer solution is **Stop-and-Wait**:
-
-1. Sender sends a packet.
-2. Sender waits for an ACK.
-3. If a timer expires (timeout) before the ACK arrives, the sender retransmits.
-
-**The Problem?** It’s incredibly slow. If you’re sending data from New Jersey to California, the "dead time" spent waiting for ACKs means you’d only use a tiny fraction of your link's actual speed.
-
-#### Pipelining
-
 Instead of sending one packet and waiting, we send a "window" of multiple packets at once.
 
 ![](assets/pipeline.jpg)
 
 ### TCP Congestion Control
 
-#### TCP Reno
+**TCP Reno**
 
 1. Slow Start: "The Probing Phase"
 
 When a connection starts, TCP doesn't know how much traffic the network can handle.
 
 - **Initial State:** It starts very small (typically 1 Maximum Segment Size or MSS).
+
 - **The Growth:** For every ACK received, the window doubles. Even though it's called "Slow Start," the growth is actually **exponential** ($1 \to 2 \to 4 \to 8 \dots$).
+
 - **The Goal:** Quickly find the "ceiling" of the network capacity.
+
 - **Exit Strategy:** It stops doubling when it hits a limit called `ssthresh` (slow-start threshold) or when a packet is lost.
+
+  *Note: in the following graph example, doubling stops when a packet is lost.*
 
 2. Congestion Avoidance: "The Cautious Phase"
 
@@ -174,14 +165,13 @@ Once the sender reaches the `ssthresh`, it assumes it is close to the network's 
 
 3. Fast Recovery: "The Quick Fix"
 
-This phase is triggered when the sender receives **three duplicate ACKs**. This is a specific signal: it means the network is congested (one packet was lost), but it’s not "dead" (later packets are still getting through to trigger those ACKs).
+This phase is triggered when the sender receives **three duplicate ACKs**. This means the network is congested (one packet was lost), but it’s not "dead" (later packets are still getting through to trigger those ACKs).
 
-- **The Action:** Instead of dropping all the way back to the beginning (Slow Start), TCP Reno cuts the window in **half** (`cwnd = cwnd / 2`).
-- **The Goal:** Maintain high throughput by not restarting from scratch when the congestion is only moderate.
+- **The Action:** TCP Reno cuts the window in **half** (`cwnd = cwnd / 2`).
 
 <img src="assets/reno.jpg" style="zoom:50%;" />
 
-#### Vegas Congestion Control
+**Vegas Congestion Control**
 
 TCP Vegas is a congestion control algorithm that uses packet **Round-trip Time (RTT)** to infer network congestion rather than relying on packet loss.
 

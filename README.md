@@ -12,3 +12,4 @@ Notes covering core computer networking concepts.
 | [Transport Layer](transport_layer.md) | UDP, TCP (handshake, sequence numbers, congestion control), sliding window protocols, Nagle's algorithm |
 | [Application Layer](application_layer.md) | HTTP, cookies, SMTP, DNS, CDNs, client-server vs. P2P architectures |
 | [Security](security.md) | AES, public-key cryptography, onion routing, digital signatures, certificate chain of trust |
+| [Mobility](mobility.md) | IP tunneling, smart phone push notifications, cellular network |

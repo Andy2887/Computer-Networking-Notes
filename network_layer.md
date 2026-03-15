@@ -8,7 +8,7 @@
 
 ### IP Subnet
 
-Subnets are chunks of IP addresses in that can communicate directly, without traveling through a router.
+Subnets are chunks of IP addresses that can communicate directly without traveling through a router.
 
 In the graph below, a blue area is a subnet.
 
