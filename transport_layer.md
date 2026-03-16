@@ -39,6 +39,12 @@ The sequence number indicates the index (offset) of the **very first byte** of d
 
 - **Example:** If you have already sent 1,000 bytes and you are sending a new packet with 500 more bytes, the sequence number for this new packet would be 1,001.
 
+The TCP initial sequence number is **random**. This is separate packets from two connections.
+
+For example, if you start a connection and quickly closed it, and a stray packet from the first connection falls directly into your new connection's window, your new connection will be corrupted.
+
+By using random initial sequence number, the chance of this happening is astronomically small.
+
 ### 2. Cumulative ACKs
 
 TCP uses "Cumulative Acknowledgments," which means an ACK doesn't just confirm one packet—it confirms everything received up to a certain point.
@@ -187,8 +193,14 @@ Nagle’s algorithm is a simple rule that forces the sender to buffer data creat
 The logic follows these steps:
 
 1. **If there is a full MSS** (Maximum Segment Size) worth of data to send, send it immediately.
-2. **If there is no unacknowledged data** (all previous packets have been ACked), send the data immediately (even if it's small).
+2. **If there is no unacknowledged data** (all previous packets have been ACKed), send the data immediately (even if it's small).
 3. **Otherwise:** Buffer the data until a full MSS is reached or until the outstanding ACK arrives.
+
+*Disadvantage:*
+
+If there is unacknowledged data, small amount of data won't be sent out. This will slow down the transmission efficiency.
+
+You might not want to use Nagle's Algorithm for high frequency trading or gaming.
 
 ---
 

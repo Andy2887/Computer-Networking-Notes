@@ -126,33 +126,6 @@ The Internet is organized hierarchically as a "network of networks":
 
 ## Protocol Stack
 
-The Internet uses a layered protocol stack where each layer has specific responsibilities:
-
-### Protocol Overview
-
-**Application Layer**
-
-- **HTTP**: Get web pages, images, and post data to servers
-- Handles URLs, redirects, caching, proxies, cookies
-
-**Security layer**
-
-- Encryption and Authentication
-
-**Transport Layer**
-
-- **TCP**: Byte streams with ordering, delivery confirmation, pacing
-- **UDP**: Simple datagram delivery
-
-**Network Layer**
-
-- **IP**: Forward packets across multiple hops
-- Makes best-effort attempt to route packets to destination IP address
-
-**Link Layer**
-
-- **Ethernet/WiFi**: Share communication link with multiple local devices
-
 <img src="assets/layers.jpg" alt="layers" style="zoom:50%;" />
 
 *Here is an analogy of mailing between friends to explain different layers of the network:*

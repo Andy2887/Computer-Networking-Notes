@@ -106,8 +106,6 @@ A digital signature is a short bit-sequence generated from a digital document an
 
  Changing a signed document will make the former signature invalid.
 
-
-
 *Example:*
 
 Assuming Meg wants to send the message "Meg likes beets" and let receivers know she is the one who sends it. 
